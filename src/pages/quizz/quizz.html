@@ -1,0 +1,73 @@
+<!--
+  Generated template for the QuizzPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Quizz</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <p padding>
+      Bienvenu sur le Quizz !!! <br/>
+      Vous avez séléctionné {{nbQuestions}} questions avec un niveau {{difficulte}} !!
+  </p>
+
+  <ion-card *ngFor="let question of questions; let i=index">
+      <ion-card-header >
+        <span>Question n°{{i+1}}</span>
+      </ion-card-header>
+
+      <div class="bravo" *ngIf="question.reponseChoisie && question.reponseChoisie == question.correct_answer"> BRAVO !!</div>
+      <div class="perdu" *ngIf="question.reponseChoisie && question.reponseChoisie != question.correct_answer"> perdu, veuillez recommencer... </div>
+
+      <ion-card-content>
+          {{question.question}}
+          <ion-item *ngIf='question.type==="multiple"; let i=index'>
+            <ion-label>Choix de réponses</ion-label>
+            <ion-select  multiple="true" [(ngModel)]="question.reponseChoisie">
+              <ion-option *ngFor="let reponse of question.incorrect_answers" name="reponse" value="{{reponse}}" >{{reponse}}</ion-option>
+            </ion-select> 
+            
+          </ion-item>
+
+          <ion-item *ngIf='question.type==="boolean"'>
+              <ion-label>Choix de réponses</ion-label>
+              <ion-select [(ngModel)]="question.reponseChoisie">
+                <ion-option *ngFor="let reponse of question.incorrect_answers" >{{reponse}}</ion-option>
+              </ion-select>
+              
+          </ion-item>
+
+          
+
+          <!----------------------- POSSIBILITE AVEC CHECKBOX ET BOUTONS RADIOS ----------------------------->
+
+          <!--div *ngIf='question.type==="multiple"'>
+              <ion-item *ngFor="let reponse of reponses" >
+                  <ion-label >{{reponse}}</ion-label>
+                  <ion-checkbox value="hello" name="toto" (click)="getCheckedvalue($event)"></ion-checkbox>
+                  
+              </ion-item>  
+          </div>
+          <div *ngIf='question.type==="boolean"'>
+              <ion-list radio-group>               
+                  <ion-item *ngFor="let reponse of reponses" >
+                    <ion-label >{{reponse}}</ion-label>
+                    <ion-radio ></ion-radio>
+                  </ion-item>
+              </ion-list>
+          </div-->
+          
+          
+      </ion-card-content>
+    </ion-card>
+
+    <button ion-button full (click)="returnHome()" icon-left><ion-icon name="arrow-back"></ion-icon> HOME</button>
+</ion-content>

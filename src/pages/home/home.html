@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Quizz 
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <form [formGroup]="formQuizz" (ngSubmit)="goToQuizz()">
+    <ion-list radio-group formControlName="nbQuestions" [(ngModel)]="nbQuestions">
+
+      <p> Bienvenu sur le Quizz !!</p>
+
+      <ion-list-header>
+      Nombre de questions :
+      </ion-list-header>
+    
+      <ion-item>
+        <ion-label>5</ion-label>
+        <ion-radio checked="true" value="5" name="nbQuestions"></ion-radio>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>6</ion-label>
+        <ion-radio value="6" name="nbQuestions"></ion-radio>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>7</ion-label>
+        <ion-radio value="7" name="nbQuestions"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>8</ion-label>
+        <ion-radio value="8" name="nbQuestions"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>9</ion-label>
+        <ion-radio value="9" name="nbQuestions"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>10</ion-label>
+        <ion-radio value="10" name="nbQuestions"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Niveau difficulté :</ion-label>
+        <ion-select [(ngModel)]="difficulte" formControlName="difficulte">
+          <ion-option value="easy">facile</ion-option>
+          <ion-option value="medium">moyen</ion-option>
+          <ion-option value="hard">difficile</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <p *ngIf="difficulte && nbQuestions !== null"> 
+      Bravo, vous avez séléctionné {{nbQuestions}} questions avec un niveau {{difficulte}} !! <br/>
+      Vous pouvez désormais démarrer le quizz ! Bonne chance ! 
+    </p>
+
+    <button ion-button full type="submit" [disabled]="!formQuizz.valid">C'est parti !!!</button>
+
+   
+  </form>
+
+</ion-content>

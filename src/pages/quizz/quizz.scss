@@ -1,0 +1,17 @@
+page-quizz {
+    .card-header-md {
+        color: $fuchsia;
+        font-weight: 700;
+    }
+    .bravo,
+    .perdu {
+        background: $fuchsia;
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 15px;
+    }
+    .button-full-md {
+        background: $fuchsia;
+    }
+}
